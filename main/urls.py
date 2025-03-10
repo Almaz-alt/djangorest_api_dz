@@ -14,18 +14,11 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
 from django.urls import path
-
-from django.urls import path
-from afisha import views
+from afisha.views import director_list, movie_list_with_reviews, review_list
 
 urlpatterns = [
-    path('api/v1/directors/', views.director_list),
-    path('api/v1/directors/<int:id>/', views.director_detail),
-    path('api/v1/movies/', views.movie_list),
-    path('api/v1/movies/<int:id>/', views.movie_detail),
-    path('api/v1/reviews/', views.review_list),
-    path('api/v1/reviews/<int:id>/', views.review_detail),
+    path('api/v1/directors/', director_list),
+    path('api/v1/movies/reviews/', movie_list_with_reviews),
+    path('api/v1/reviews/', review_list),
 ]
-
