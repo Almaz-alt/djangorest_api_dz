@@ -15,10 +15,17 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
-from afisha.views import director_list, movie_list_with_reviews, review_list
+from afisha.views import (
+    DirectorCreateView, DirectorDetailView,
+    MovieCreateView, MovieDetailView,
+    ReviewCreateView, ReviewDetailView
+)
 
 urlpatterns = [
-    path('api/v1/directors/', director_list),
-    path('api/v1/movies/reviews/', movie_list_with_reviews),
-    path('api/v1/reviews/', review_list),
+    path('directors/', DirectorCreateView.as_view(), name='director-create'),
+    path('directors/<int:pk>/', DirectorDetailView.as_view(), name='director-detail'),
+    path('movies/', MovieCreateView.as_view(), name='movie-create'),
+    path('movies/<int:pk>/', MovieDetailView.as_view(), name='movie-detail'),
+    path('reviews/', ReviewCreateView.as_view(), name='review-create'),
+    path('reviews/<int:pk>/', ReviewDetailView.as_view(), name='review-detail'),
 ]

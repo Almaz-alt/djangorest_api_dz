@@ -1,27 +1,36 @@
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import generics
 from .models import Director, Movie, Review
 from .serializers import DirectorSerializer, MovieSerializer, ReviewSerializer
 
 
-@api_view(['GET'])
-def director_list(request):
-    directors = Director.objects.all()
-    serializer = DirectorSerializer(directors, many=True)
-    return Response(serializer.data, status=status.HTTP_200_OK)
+# Directors
+class DirectorCreateView(generics.CreateAPIView):
+    queryset = Director.objects.all()
+    serializer_class = DirectorSerializer
 
 
-@api_view(['GET'])
-def movie_list_with_reviews(request):
-    movies = Movie.objects.all()
-    serializer = MovieSerializer(movies, many=True)
-    return Response(serializer.data, status=status.HTTP_200_OK)
+class DirectorDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Director.objects.all()
+    serializer_class = DirectorSerializer
 
 
-@api_view(['GET'])
-def review_list(request):
-    reviews = Review.objects.all()
-    serializer = ReviewSerializer(reviews, many=True)
-    return Response(serializer.data, status=status.HTTP_200_OK)
+# Movies
+class MovieCreateView(generics.CreateAPIView):
+    queryset = Movie.objects.all()
+    serializer_class = MovieSerializer
 
+
+class MovieDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Movie.objects.all()
+    serializer_class = MovieSerializer
+
+
+# Reviews
+class ReviewCreateView(generics.CreateAPIView):
+    queryset = Review.objects.all()
+    serializer_class = ReviewSerializer
+
+
+class ReviewDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Review.objects.all()
+    serializer_class = ReviewSerializer
