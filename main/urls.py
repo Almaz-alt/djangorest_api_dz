@@ -18,6 +18,6 @@ from django.urls import path
 from users.views import RegisterAPIView, ConfirmUserAPIView
 
 urlpatterns = [
-    path("api/v1/users/register/", RegisterAPIView.as_view(), name="register"),
-    path("api/v1/users/confirm/", ConfirmUserAPIView.as_view(), name="confirm"),
+    path('register/', RegisterAPIView.as_view(), name='register'),
+    path('confirm/', ConfirmUserAPIView.as_view(), name='confirm-user'),
 ]
